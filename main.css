@@ -29,7 +29,7 @@ body, html {
 
 .main__info {
     height: 480px;
-    background-color: #e4e4e4;
+    background-color: #ffe6d2;
     border-radius: 63px;
     position: absolute;
     top: 500px;
@@ -77,7 +77,7 @@ body, html {
     justify-content: center;
     width: 90px;
     height: 90px;
-    background-color: #c0c0c0;
+    background-color: #faac6d;
     z-index: 1;
     border-radius: 60px;
     margin-right: 45px;
@@ -111,7 +111,7 @@ body, html {
     display: block;
     height: 4px;
     width: 30px;
-    background-color: #1c5927;
+    background-color: #faac6d;
     border-radius: 4px;
     margin: 4px 0;
 }
@@ -122,7 +122,7 @@ body, html {
     display: block;
     height: 4px;
     width: 30px;
-    background-color: #1c5927;
+    background-color: #faac6d;
     border-radius: 4px;
 }
 
@@ -151,7 +151,7 @@ body, html {
     right: -412px; /* Скрыто за пределами экрана */
     width: 412px;
     height: 100%;
-    background-color: #fff;
+    background-color: #ffe6d2;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
     transition: right 0.3s ease;
     z-index: 10;
@@ -285,7 +285,7 @@ body, html {
 .circle {
     width: 100%;
     height: 100%;
-    background-color: #007BFF; /* Берузовый цвет */
+    background-color: #77ff38; /* Берузовый цвет */
     border-radius: 50%;
     transform: translateY(100%); /* Начальное положение за пределами кнопки */
     transition: transform 0.5s ease; /* Плавный переход */
@@ -295,7 +295,7 @@ body, html {
 
 .percent-text {
     position: absolute;
-    color: white;
+    color: #000;
     font-size: 24px;
     font-weight: bold;
     z-index: 1;
