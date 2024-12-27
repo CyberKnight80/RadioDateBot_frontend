@@ -38,6 +38,9 @@ $(function () {
 					// Add the visible class after the content is loaded
 					matchPage.classList.add('visible')
 
+					// Скрыть бургер-меню
+					burgerMenu.style.display = 'none'
+
 					// Add event listener to the close button
 					const closeButton = matchPage.querySelector('.close-button')
 					closeButton.addEventListener('click', function (e) {
@@ -45,6 +48,8 @@ $(function () {
 						matchPage.classList.remove('visible')
 						setTimeout(() => {
 							matchPage.classList.add('hidden')
+							// Показать бургер-меню
+							burgerMenu.style.display = 'block'
 						}, 500) // Скрыть через 0.5 секунды после анимации
 					})
 				})
@@ -66,6 +71,8 @@ $(function () {
 			matchPage.classList.remove('visible')
 			setTimeout(() => {
 				matchPage.classList.add('hidden')
+				// Показать бургер-меню
+				burgerMenu.style.display = 'block'
 			}, 500) // Скрыть через 0.5 секунды после анимации
 			isSwiping = false
 		}
@@ -91,6 +98,8 @@ $(function () {
 			matchPage.classList.remove('visible')
 			setTimeout(() => {
 				matchPage.classList.add('hidden')
+				// Показать бургер-меню
+				burgerMenu.style.display = 'block'
 			}, 500) // Скрыть через 0.5 секунды после анимации
 			isSwiping = false
 		}

@@ -157,6 +157,24 @@ body, html {
     z-index: 10;
 }
 
+.sidebar li{
+    display: flex;
+}
+
+.icon-img{
+    width: 30px;
+    height: 30px;
+}
+
+.sidebar-text {
+    /* position: absolute; */
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.sidebar-text input {
+    background-color:#4b464631;
+}
+
 .menu-opened .sidebar {
     right: 0; /* Показать меню */
 }
@@ -300,3 +318,4 @@ body, html {
     font-weight: bold;
     z-index: 1;
 }
+

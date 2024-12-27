@@ -1,76 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./reset.css">
-    <link rel="stylesheet" href="./main.css">
-    <title>Main_Page</title>
-</head>
-<body>
-    <div class="overlay"></div>
-    <div class="container">
-        <a href="#" class="burger">
-            <span></span>
-        </a>
-        <div class="wrapper">
-            <section class="main">
-                <div class="main__photo">
-                    <img src="./Photos/Main_Photo.jpg" alt="Ава главная"/>
-                </div>
-                <div class="main__info">
-                    <div class="main__info--name">Цветочный</div>
-                    <div class="main__info--desc">
-                        на связи по дису на линии вешу давай подрубайся созвончик сделаем
-                    </div>
-                    <div class="union__album">
-                        <a href="#" class="union__album--link">
-                            <img src="./Photos/Lil chill.jpg" alt="Обложка альбома" class="union__album--image"/>
-                            <div class="union__album--text">
-                                Альбом который вас связывет
-                            </div>
-                        </a>
-                    </div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./reset.css" />
+		<link rel="stylesheet" href="./main.css" />
+		<title>Main_Page</title>
+	</head>
+	<body>
+		<div class="overlay"></div>
+		<div class="container">
+			<a href="#" class="burger">
+				<span></span>
+			</a>
+			<div class="wrapper">
+				<section class="main">
+					<div class="main__photo">
+						<img src="./Photos/Main_Photo.jpg" alt="Ава главная" />
+					</div>
+					<div class="main__info">
+						<div class="main__info--name">Цветочный</div>
+						<div class="main__info--desc">
+							на связи по дису на линии вешу давай подрубайся созвончик сделаем
+						</div>
+						<div class="union__album">
+							<a href="#" class="union__album--link">
+								<img
+									src="./Photos/Lil chill.jpg"
+									alt="Обложка альбома"
+									class="union__album--image"
+								/>
+								<div class="union__album--text">
+									Альбом который вас связывет
+								</div>
+							</a>
+						</div>
 
-                    <div class="buttons">
-                        <ul class="btn__box">
-                            <li class="btn__box--dislike">
-                                <a href="#" class="btn__box--dislike-link">
-                                    <img src="./Photos/dislike-icon.svg" alt="Не нравится" class="dislike--icon"/>
-                                </a>
-                            </li>
-                            <li class="btn__box--match">
-                                <div class="circle-container">
-                                    <div class="circle"></div>
-                                    <div class="percent-text">50%</div>
-                                </div>
-                            </li>
-                            <li class="btn__box--like">
-                                <a href="#" class="btn__box--like-link">
-                                    <img src="./Photos/like-icon.svg" alt="Hравится" class="like--icon"/>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-        </div>
-        <div class="sidebar">
-            <h2>Настройки</h2>
-            <ul>
-                <li>telegram_id: int</li>
-                <li>name: str</li>
-                <li>about: str | None = None</li>
-                <li>avatar_url: str</li>
-                <li>spotify_login: str</li>
-                <li>spotify_password: str</li>
-            </ul>
-        </div>
-    </div>
-    <div id="matchPage" class="hidden">
-        <!-- Content of Match Page will be loaded here -->
-    </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./script.js"></script>
-</body>
+						<div class="buttons">
+							<ul class="btn__box">
+								<li class="btn__box--dislike">
+									<a href="#" class="btn__box--dislike-link">
+										<img
+											src="./Photos/dislike-icon.svg"
+											alt="Не нравится"
+											class="dislike--icon"
+										/>
+									</a>
+								</li>
+								<li class="btn__box--match">
+									<div class="circle-container">
+										<div class="circle"></div>
+										<div class="percent-text">50%</div>
+									</div>
+								</li>
+								<li class="btn__box--like">
+									<a href="#" class="btn__box--like-link">
+										<img
+											src="./Photos/like-icon.svg"
+											alt="Hравится"
+											class="like--icon"
+										/>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+			</div>
+			<div class="sidebar">
+				<h2>Настройки</h2>
+				<ul>
+					<li>
+						<img
+							src="./Photos/human-icon.svg   "
+							alt="Иконка человека"
+							class="icon-img"
+						/>
+						<div class="sidebar-text">
+							<label for="name">Имя:</label>
+							<input type="text" id="name" name="name" />
+						</div>
+					</li>
+					<li>
+						<img
+							src="./Photos/pencil-icon.svg"
+							alt="Иконка карандаша"
+							class="icon-img"
+						/>
+						<div class="sidebar-text">
+							<label for="name">О себе:</label>
+							<input type="text" id="about" />
+						</div>
+					</li>
+					<li>
+						<img
+							src="./Photos/avatar-icon.svg"
+							alt="Аватар человека"
+							class="icon-img"
+						/>
+						<div class="sidebar-text">
+							<label for="name">Ваш аватар:</label>
+							<input type="text" id="avatar" />
+						</div>
+					</li>
+					<li>
+						<img
+							src="./Photos/spotify-color-icon.svg"
+							alt="Иконка спотифая цветная"
+							class="icon-img"
+						/>
+						<div class="sidebar-text">
+							<label for="name">Ваш логин spotify:</label>
+							<input type="text" id="login" />
+						</div>
+					</li>
+					<li>
+						<img
+							src="./Photos/spotify-icon.svg"
+							alt="Иконка спотифая"
+							class="icon-img"
+						/>
+						<div class="sidebar-text">
+							<label for="name">Ваш пароль spotify:</label>
+							<input type="text" id="password"/>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="matchPage" class="hidden">
+			<!-- Content of Match Page will be loaded here -->
+		</div>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="./script.js"></script>
+	</body>
 </html>
