@@ -23,7 +23,12 @@ html {
 	position: relative;
 }
 
-.main__photo img {
+/* .main__photo img {
+	width: 100%;
+	height: 600px;
+} */
+
+#mainPhoto{
 	width: 100%;
 	height: 600px;
 }

@@ -1,7 +1,11 @@
 $(function () {
-	const API_URL = 'https://11b6-109-195-118-245.ngrok-free.app/user/334298435'
-	const NEXT_URL =
-		'https://11b6-109-195-118-245.ngrok-free.app/user/334298435/next' // Updated URL for dislike
+	const MY_ID = '334298435' // Ваш ID
+
+	const BASE_URL = 'https://2f46-109-195-118-245.ngrok-free.app'
+	const MY_PROFILE_API_URL = `${BASE_URL}/user/${MY_ID}`
+	const NEXT_URL = `${BASE_URL}/user/${MY_ID}/next` // Updated URL for dislike
+
+	let nextUserId = '' // ID следующего человека
 
 	const burgerMenu = document.querySelector('.burger')
 	const overlay = document.querySelector('.overlay')
@@ -28,7 +32,7 @@ $(function () {
 	})
 
 	// Функция для отправки GET-запроса на сервер при нажатии на dislike
-	function sendDislike() {
+	function sendNext() {
 		fetch(NEXT_URL, {
 			method: 'GET',
 			headers: {
@@ -43,11 +47,41 @@ $(function () {
 			})
 			.then(data => {
 				console.log('Success:', data)
+				nextUserId = data.telegram_id // Сохраняем ID следующего человека
 				// Update the HTML elements with the new data
+				console.log(nextUserId)
 				updateUserInfo(data)
+				updateMainPhoto(data.avatar_url)
 			})
 			.catch(error => {
-				console.error('Error sending dislike:', error)
+				console.error('Error sending next:', error)
+			})
+	}
+
+	// Функция для отправки GET-запроса на сервер при нажатии на like
+	function sendLike() {
+		const LIKE_URL = `${BASE_URL}/likes/${MY_ID}/${nextUserId}`
+		console.log(LIKE_URL)
+		fetch(LIKE_URL, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error('Network response was not ok')
+				}
+				return response.json()
+			})
+			.then(data => {
+				console.log('Success:', data)
+				// Update the HTML elements with the new data
+				console.log(data)
+				updateMainPhoto(data.avatar_url)
+			})
+			.catch(error => {
+				console.error('Error sending like:', error)
 			})
 	}
 
@@ -56,7 +90,15 @@ $(function () {
 		.querySelector('.btn__box--dislike-link')
 		.addEventListener('click', function (e) {
 			e.preventDefault()
-			sendDislike() // Send the dislike GET request
+			sendNext() // Send the next GET request
+		})
+
+	// Логика для открытия match.html при нажатии на like
+	document
+		.querySelector('.btn__box--like-link')
+		.addEventListener('click', function (e) {
+			e.preventDefault()
+			sendLike() // Send the like GET request
 		})
 
 	// Обработчик событий для свайпа вниз
@@ -131,9 +173,16 @@ $(function () {
 		document.querySelector('.main__info--desc').textContent = data.about || ''
 	}
 
+	// Функция для обновления фотографии в main__photo
+	function updateMainPhoto(avatarUrl) {
+		const mainPhoto = document.getElementById('mainPhoto')
+		mainPhoto.src = avatarUrl
+	}
+
 	// Функция для заполнения input полей данными с сервера
 	function fetchUserData() {
-		fetch(API_URL)
+		// Получение настроек пользователя (того кто запустл приложение)
+		fetch(MY_PROFILE_API_URL)
 			.then(response => {
 				if (!response.ok) {
 					throw new Error('Network response was not ok')
@@ -152,10 +201,13 @@ $(function () {
 
 				// Update the HTML elements with the fetched data
 				updateUserInfo(data)
+				updateMainPhoto(data.avatar_url)
 			})
 			.catch(error => {
 				console.error('Error fetching user data:', error)
 			})
+
+		sendNext()
 	}
 
 	// Функция для отправки POST-запроса на сервер для обновления данных
@@ -168,7 +220,7 @@ $(function () {
 			spotify_password: document.getElementById('spotify_password').value,
 		}
 
-		fetch(API_URL, {
+		fetch(MY_PROFILE_API_URL, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
