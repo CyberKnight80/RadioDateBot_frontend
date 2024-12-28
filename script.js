@@ -54,6 +54,7 @@ $(function () {
 				updateMainPhoto(data.avatar_url)
 
 				updateAlbumPicture(data.album_cover_url)
+				setCircleHeight(data.match_percent)
 			})
 			.catch(error => {
 				console.error('Error sending next:', error)
@@ -158,12 +159,24 @@ $(function () {
 	})
 
 	// Функция для установки уровня заполнения кнопки и обновления текста с процентами
+	// Функция для установки уровня заполнения кнопки и обновления текста с процентами
 	function setCircleHeight(percent) {
 		const circle = document.querySelector('.circle')
 		const percentText = document.querySelector('.percent-text')
-		const translateY = 100 - percent
+
+		// Округляем процент до целого числа
+		const roundedPercent = Math.round(percent)
+
+		// Ограничиваем максимальный балл до 10
+		const maxScore = 10
+		const finalPercent = Math.min(roundedPercent, maxScore)
+
+		// Вычисляем translateY на основе финального процента
+		const translateY = 100 - finalPercent * 10
+
+		// Устанавливаем стиль и текст
 		circle.style.transform = `translateY(${translateY}%)`
-		percentText.textContent = `${percent}%`
+		percentText.textContent = `${finalPercent}`
 	}
 
 	// Пример использования: установить уровень заполнения на 50%
