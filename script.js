@@ -52,6 +52,8 @@ $(function () {
 				console.log(nextUserId)
 				updateUserInfo(data)
 				updateMainPhoto(data.avatar_url)
+
+				updateAlbumPicture(data.album_cover_url)
 			})
 			.catch(error => {
 				console.error('Error sending next:', error)
@@ -200,14 +202,20 @@ $(function () {
 					data.spotify_password || ''
 
 				// Update the HTML elements with the fetched data
-				updateUserInfo(data)
-				updateMainPhoto(data.avatar_url)
+				//updateUserInfo(data)
+				//updateMainPhoto(data.avatar_url)
 			})
 			.catch(error => {
 				console.error('Error fetching user data:', error)
 			})
 
 		sendNext()
+	}
+
+	// Обновление аватарки альбома связающего хаха лол
+	function updateAlbumPicture(album_url) {
+		const album_obj = document.getElementById('album__pic')
+		album_obj.src = album_url
 	}
 
 	// Функция для отправки POST-запроса на сервер для обновления данных
