@@ -50,11 +50,117 @@ $(function () {
 				nextUserId = data.telegram_id // Сохраняем ID следующего человека
 				// Update the HTML elements with the new data
 				console.log(nextUserId)
+				
+				const userDataThroughTimes = data
 				updateUserInfo(data)
 				updateMainPhoto(data.avatar_url)
 
 				updateAlbumPicture(data.album_cover_url)
 				setCircleHeight(data.match_percent)
+					// console.log('TESTINGS')
+					// console.log(userDataThroughTimes)
+
+					// main_photo_match_obj = matchPage.getElementById('match_photo_id')
+					// main_photo_match_obj.src = userDataThroughTimes.avatar_url
+
+					// match_telegram_id_obj = matchPage.getElementById('match_telegram_id')
+					// match_telegram_id_obj.href = `https:://t.me/${userDataThroughTimes.telegram_short_link}`
+					// match_telegram_id_obj.value = `https:://t.me/${userDataThroughTimes.telegram_short_link}`
+				if (data.is_matched) {
+					// Логика для открытия match.html
+					matchPage.classList.remove('hidden')
+
+					// Load the content of match.html into the div
+					fetch('match.html')
+						.then(response => response.text())
+						.then(data => {
+							
+							
+							
+							
+							
+
+							
+							matchPage.innerHTML = data
+							// Add the visible class after the content is loaded
+							matchPage.classList.add('visible')
+
+							// Скрыть бургер-меню
+							burgerMenu.style.display = 'none'
+
+							// Add event listener to the close button
+							const closeButton = matchPage.querySelector('.close-button')
+							closeButton.addEventListener('click', function (e) {
+								e.preventDefault()
+								matchPage.classList.remove('visible')
+								setTimeout(() => {
+									
+									matchPage.classList.add('hidden')
+									// Показать бургер-меню
+									burgerMenu.style.display = 'block'
+
+
+									
+							
+								}, 500) // Скрыть через 0.5 секунды после анимации
+							})
+						})
+
+						
+					// Обработчик событий для свайпа вниз
+					matchPage.addEventListener('touchstart', e => {
+						startY = e.touches[0].clientY
+						isSwiping = true
+					})
+
+					matchPage.addEventListener('touchmove', e => {
+						if (!isSwiping) return
+						const currentY = e.touches[0].clientY
+						const diffY = startY - currentY
+
+						if (diffY > 50) {
+							// Если свайп вниз больше 50 пикселей
+							matchPage.classList.remove('visible')
+							setTimeout(() => {
+								matchPage.classList.add('hidden')
+								// Показать бургер-меню
+								burgerMenu.style.display = 'block'
+							}, 500) // Скрыть через 0.5 секунды после анимации
+							isSwiping = false
+						}
+					})
+
+					matchPage.addEventListener('touchend', () => {
+						isSwiping = false
+					})
+
+					// Обработчик событий для свайпа вниз на десктопе
+					matchPage.addEventListener('mousedown', e => {
+						startY = e.clientY
+						isSwiping = true
+					})
+
+					matchPage.addEventListener('mousemove', e => {
+						if (!isSwiping) return
+						const currentY = e.clientY
+						const diffY = startY - currentY
+
+						if (diffY > 50) {
+							// Если свайп вниз больше 50 пикселей
+							matchPage.classList.remove('visible')
+							setTimeout(() => {
+								matchPage.classList.add('hidden')
+								// Показать бургер-меню
+								burgerMenu.style.display = 'block'
+							}, 500) // Скрыть через 0.5 секунды после анимации
+							isSwiping = false
+						}
+					})
+
+					matchPage.addEventListener('mouseup', () => {
+						isSwiping = false
+					})
+				}
 			})
 			.catch(error => {
 				console.error('Error sending next:', error)
@@ -81,7 +187,8 @@ $(function () {
 				console.log('Success:', data)
 				// Update the HTML elements with the new data
 				console.log(data)
-				updateMainPhoto(data.avatar_url)
+				//updateMainPhoto(data.avatar_url)
+				sendNext();
 			})
 			.catch(error => {
 				console.error('Error sending like:', error)
