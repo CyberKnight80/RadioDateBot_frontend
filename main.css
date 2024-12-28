@@ -1,0 +1,342 @@
+/* main.css */
+body,
+html {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden; /* Отключает прокрутку */
+}
+
+.wrapper {
+	max-width: 412px;
+	max-height: 915px;
+	margin: auto;
+	overflow: auto; /* Включает прокрутку внутри контейнера, если контент больше */
+	background-color: #f0f0f0; /* Фон для видимости */
+}
+
+.container {
+	max-width: 412px;
+	max-height: 915px;
+	background-color: #e4e4e4;
+	position: relative;
+}
+
+/* .main__photo img {
+	width: 100%;
+	height: 600px;
+} */
+
+#mainPhoto{
+	width: 100%;
+	height: 600px;
+}
+
+.main__info {
+	height: 480px;
+	background-color: #ffe6d2;
+	border-radius: 63px;
+	position: absolute;
+	top: 500px;
+	width: 100%;
+}
+
+.main__info--name {
+	font-weight: 400;
+	font-size: 40px;
+	line-height: 30px;
+	margin-top: 23px;
+	margin-left: 33px;
+	margin-bottom: 20px;
+}
+
+.main__info--desc {
+	font-weight: 400;
+	font-size: 24px;
+	line-height: 20px;
+	margin-left: 33px;
+}
+
+.main__info--radio {
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 24px;
+	margin-left: 104px;
+	margin-top: 11px;
+	color: #1c5927;
+}
+
+.btn__box {
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	margin-left: 27px;
+	margin-top: 12px;
+}
+
+.btn__box--dislike,
+.btn__box--match,
+.btn__box--like {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 90px;
+	height: 90px;
+	background-color: #faac6d;
+	z-index: 1;
+	border-radius: 60px;
+	margin-right: 45px;
+	position: relative; /* Добавлено для правильного позиционирования SVG */
+	overflow: hidden; /* Скрывает выходящие за пределы кнопки части SVG */
+}
+
+.dislike--icon {
+	width: 50px;
+	height: 50px;
+}
+
+.btn__box--like {
+	margin-right: 0;
+}
+
+.like--icon {
+	width: 50px;
+	height: 50px;
+}
+
+.burger {
+	display: block;
+	position: fixed;
+	top: 30px;
+	right: 15px;
+	z-index: 100001;
+}
+
+.burger span {
+	display: block;
+	height: 4px;
+	width: 30px;
+	background-color: #faac6d;
+	border-radius: 4px;
+	margin: 4px 0;
+}
+
+.burger::after,
+.burger::before {
+	content: '';
+	display: block;
+	height: 4px;
+	width: 30px;
+	background-color: #faac6d;
+	border-radius: 4px;
+}
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	backdrop-filter: blur(5px);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.3s ease;
+	z-index: 9;
+}
+
+.menu-opened .overlay {
+	opacity: 1;
+	pointer-events: all;
+}
+
+.sidebar {
+	position: fixed;
+	top: 0;
+	right: -412px; /* Скрыто за пределами экрана */
+	width: 412px;
+	height: 100%;
+	background-color: #ffe6d2;
+	box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+	transition: right 0.3s ease;
+	z-index: 10;
+}
+
+.sidebar li {
+	display: flex;
+}
+
+.icon-img {
+	width: 30px;
+	height: 30px;
+}
+
+.sidebar-text {
+	/* position: absolute; */
+	margin-top: 10px;
+	margin-left: 10px;
+}
+.sidebar-text input {
+	background-color: #4b464631;
+}
+
+.menu-opened .sidebar {
+	right: 0; /* Показать меню */
+}
+
+.sidebar h2 {
+	margin: 20px;
+	font-size: 24px;
+}
+
+.sidebar ul {
+	list-style: none;
+	padding: 0;
+}
+
+.sidebar li {
+	padding: 15px 20px;
+	border-bottom: 1px solid #ddd;
+}
+
+.union__album--image {
+	display: flex;
+	align-self: center;
+	justify-self: center;
+	width: 120px;
+	height: 120px;
+}
+
+.union__album--text {
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+.union__album {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 12px;
+}
+
+.union__album--link {
+}
+
+#matchPage {
+	position: fixed;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: white;
+	transition: top 0.5s ease-in-out;
+	z-index: 1000;
+}
+
+#matchPage.visible {
+	top: 0;
+}
+
+.hidden {
+	display: none;
+}
+
+.match-main {
+	position: relative;
+	width: 412px;
+	height: 915px;
+	overflow: hidden;
+}
+
+.match-main img {
+	width: 412px;
+	height: 915px;
+	object-fit: cover; /* Чтобы изображение заполняло весь контейнер */
+}
+
+.telegram-link {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	color: white; /* Цвет текста */
+	font-size: 24px; /* Размер текста */
+}
+
+.telegram-desc {
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	color: white; /* Цвет текста */
+	font-size: 24px; /* Размер текста */
+}
+
+.telegram-text {
+	background: rgba(0, 0, 0, 0.5); /* Фон текста для лучшей читаемости */
+	padding: 10px 20px;
+	border-radius: 5px;
+}
+
+.close-button {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	z-index: 1001;
+}
+
+.close-icon {
+	width: 30px;
+	height: 30px;
+}
+
+.circle-container {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.circle {
+	width: 100%;
+	height: 100%;
+	background-color: #77ff38; /* Берузовый цвет */
+	border-radius: 50%;
+	transform: translateY(100%); /* Начальное положение за пределами кнопки */
+	transition: transform 0.5s ease; /* Плавный переход */
+	position: absolute;
+	bottom: 0;
+}
+
+.percent-text {
+	position: absolute;
+	color: #000;
+	font-size: 24px;
+	font-weight: bold;
+	z-index: 1;
+}
+
+.save-button-container {
+	display: flex;
+	align-content: inherit;
+	justify-content: center;
+}
+
+#saveButton {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100px;
+	height: 50px;
+	background-color: #ebbd97;
+	border-radius: 40px;
+}
